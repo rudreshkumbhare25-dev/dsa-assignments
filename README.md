@@ -18,4 +18,7 @@ All implementations are written in standard C++. You can run any assignment usin
 
 1. **Compile:**
    ```bash
-   g++ assignment1.cpp -o assignment1
+   g++ assignmentName.cpp -o assignmentName
+2. **Run:**
+   ```bash
+   ./assignmentName.cpp
