@@ -1,0 +1,182 @@
+#include <iostream>
+using namespace std;
+
+class Song{
+public:
+    string title;
+    Song* next;
+
+    Song(string t){
+        title = t;
+        next = NULL;
+    }
+};
+
+class Playlist{
+    Song* head;
+    Song* tail;
+public:
+    Playlist(){
+        head = tail = NULL;
+    }
+
+    void add(string t) {
+        Song* newSong = new Song(t);
+        
+        if (head == NULL) {
+            head = tail = newSong;
+        } else {
+            tail->next = newSong;
+            tail = newSong;
+        }
+    }
+
+    void remove_front() {
+        if (head == NULL) {
+            cout << "No song to remove from the playlist.\n";
+            return;
+        }
+
+        if (head == tail) {
+            delete head;
+            head = tail = NULL;
+            return;
+        }
+
+        Song* temp = head;
+        head = head->next;
+        temp->next = NULL;
+
+        delete temp;
+    }
+
+    void remove_back() {
+        if (head == NULL) {
+            cout << "Playlist is empty. No song to remove.\n";
+            return;
+        }
+
+        if (head == tail) {
+            delete head;
+            head = tail = NULL;
+            return;
+        }
+
+        Song* temp = head;
+        while (temp->next != tail) {
+            temp = temp->next;
+        }
+
+        temp->next = NULL;
+        delete tail;
+        tail = temp;
+    }
+
+    void remove_specific(string t) {
+        if (head == NULL) {
+            cout << "Playlist is empty. No song to remove.\n";
+            return;
+        }
+
+        if (head->title == t) {
+            remove_front();
+            cout << "Successfully removed... " << t << endl;
+            return;
+        }
+
+        Song* temp = head;
+        while (temp->next != NULL && temp->next->title != t) {
+            temp = temp->next;
+        }
+
+        if (temp->next == NULL) {
+            cout << "Song not found in the playlist.\n";
+            return;
+        }
+
+        if (temp->next == tail) {
+            remove_back();
+            cout << "Successfully removed... " << t << endl;
+            return;
+        }
+
+        Song* songToDelete = temp->next;
+        temp->next = songToDelete->next;
+        delete songToDelete;
+    }
+
+    void play(string s) {
+        Song* temp = head;
+        while(temp != NULL) {
+            if(temp->title == s) {
+                cout << "Now playing... " << s << endl;
+                return;
+            }
+            temp = temp->next;
+        }
+        cout << "Song not found.\n";
+    }
+
+    void displaySongs(){
+        if (head == NULL) {
+            cout << "No song in the playlist.\n";
+            return;
+        }
+
+        Song* temp = head;
+        while(temp != NULL) {
+            cout << "Song name : " << temp->title << endl;
+            temp = temp->next;
+        }
+    }
+};
+
+int main() {
+    Playlist l;
+    int choice;
+    string title;
+
+    do {
+        cout << "\n----- PLAYLIST MAKER -----\n";
+        cout << "1. Add songs\n";
+        cout << "2. Remove songs\n";
+        cout << "3. Play songs\n";
+        cout << "4. Display songs\n";
+        cout << "5. Exit\n";
+        cout << "Enter your choice : ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            cout << "Enter song title to add : ";
+            cin.ignore();
+            getline(cin, title);
+            l.add(title);
+            break;
+        case 2:
+            cout << "Enter song title to remove : ";
+            cin.ignore();
+            getline(cin, title);
+            l.remove_specific(title);
+            break;
+        case 3:
+            cout << "Enter song title to play : ";
+            cin.ignore();
+            getline(cin, title);
+            l.play(title);
+            break;
+        case 4:
+            cout << "\n----- CURRENT PLAYLIST -----\n";
+            l.displaySongs();
+            break;
+        case 5:
+            cout << "Exiting...\n";
+            break;
+        default:
+            cout << "Invalid title input. Try again!\n";
+            break;
+        }
+    } while (choice != 5);
+
+    return 0;
+}
