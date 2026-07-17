@@ -1,0 +1,6 @@
+# Ignore Windows executables
+*.exe
+
+# Ignore common Unix/Mac compilation outputs
+*.out
+*.o
