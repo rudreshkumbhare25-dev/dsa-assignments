@@ -21,4 +21,4 @@ All implementations are written in standard C++. You can run any assignment usin
    g++ assignmentName.cpp -o assignmentName
 2. **Run:**
    ```bash
-   ./assignmentName.cpp
+   ./assignmentName
