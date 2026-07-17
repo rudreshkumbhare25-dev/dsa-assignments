@@ -1,4 +1,9 @@
+# Compiled binaries and object files
 *.exe
-
 *.out
 *.o
+*.obj
+
+# OS-specific clutter
+.DS_Store
+Thumbs.db
