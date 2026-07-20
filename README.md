@@ -6,7 +6,7 @@ This repository contains all the assignments and practical implementations for m
 
 | Assignment | Topic | Description | Files |
 | :--- | :--- | :--- | :--- |
-| **Assignment 1** | Singly Linked List | Playlist Maker app with add, play, and specific item deletion. | [`assignment1.cpp`](./assignment1.cpp) |
+| **Assignment 1** | Singly Linked List | Playlist Maker app with add, play, and deletion. | [`assignment1.cpp`](./assignment1.cpp) |
 | **Assignment 2** | *Coming Soon* | *Description of next assignment* | *Pending* |
 | **Assignment 3** | *Coming Soon* | *Description of next assignment* | *Pending* |
 
