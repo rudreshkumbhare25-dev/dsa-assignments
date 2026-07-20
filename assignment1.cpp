@@ -20,7 +20,18 @@ public:
         head = tail = NULL;
     }
 
-    void add(string t) {
+    void add_front(string t) {
+        Song* newSong = new Song(t);
+        
+        if (head == NULL) {
+            head = tail = newSong;
+        } else {
+            newSong->next = head;
+            head = newSong;
+        }
+    }
+
+    void add_back(string t) {
         Song* newSong = new Song(t);
         
         if (head == NULL) {
@@ -29,6 +40,35 @@ public:
             tail->next = newSong;
             tail = newSong;
         }
+    }
+
+    void add(string t, int pos){
+        if (pos < 0){
+            cout << "Invalid position\n";
+            return;
+        }
+        if (pos == 0){
+            add_front(t);
+            return;
+        }
+
+        Song* temp = head;
+        for(int i=0; i<pos-1 && temp!= NULL; i++){
+            temp = temp->next;                  
+        }
+
+        if (temp == NULL) {
+            cout << "Invalid position\n";
+            return;
+        }
+        if (temp->next == NULL) {
+            add_back(t);
+            return;
+        }
+
+        Song* newNode = new Song(t);
+        newNode->next = temp->next;
+        temp->next = newNode;
     }
 
     void remove_front() {
@@ -129,6 +169,12 @@ public:
             temp = temp->next;
         }
     }
+
+    ~Playlist() {
+        while (head != NULL) {
+            remove_front();
+        }
+    }
 };
 
 int main() {
@@ -151,7 +197,10 @@ int main() {
             cout << "Enter song title to add : ";
             cin.ignore();
             getline(cin, title);
-            l.add(title);
+            int position;
+            cout << "Enter where do you want to add song (0: at the start) : ";
+            cin >> position;
+            l.add(title, position);
             break;
         case 2:
             cout << "Enter song title to remove : ";
