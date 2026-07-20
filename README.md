@@ -14,6 +14,19 @@ This repository contains college course assignments and personal C++ implementat
 
 ---
 
+## 🔧 How to Compile & Run Assignments
+
+All implementations are written in standard C++. You can run any assignment using a terminal and a C++ compiler (like `g++`):
+
+1. **Compile:**
+   ```bash
+   g++ assignmentName.cpp -o assignmentName
+2. **Run:**
+   ```bash
+   ./assignmentName
+
+---
+
 ## 🛠️ Personal Projects & Custom Libraries
 
 ### 📌 Custom C++ Linked List Library
