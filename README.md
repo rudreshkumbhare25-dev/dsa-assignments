@@ -42,5 +42,5 @@ A modular implementation of a Singly Linked List split into header and implement
 To compile and run the library with the test file, navigate to the folder and run:
 ```bash
 cd linkedlist-library
-g++ LinkedList.cpp main.cpp -o test_list
-./test_list
+g++ LinkedList.cpp main.cpp -o main
+./main
