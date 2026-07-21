@@ -49,7 +49,7 @@ public:
         }
         if (pos == 0){
             add_front(t);
-	 cout << "Successfully added... " << t << endl;
+	 		cout << "Successfully added... " << t << endl;
             return;
         }
 
@@ -64,13 +64,14 @@ public:
         }
         if (temp->next == NULL) {
             add_back(t);
-	 cout << "Successfully added... " << t << endl;
+	 		cout << "Successfully added... " << t << endl;
             return;
         }
 
         Song* newNode = new Song(t);
         newNode->next = temp->next;
         temp->next = newNode;
+		cout << "Successfully added... " << t << endl;
     }
 
     void remove_front() {
