@@ -49,6 +49,7 @@ public:
         }
         if (pos == 0){
             add_front(t);
+	 cout << "Successfully added... " << t << endl;
             return;
         }
 
@@ -63,6 +64,7 @@ public:
         }
         if (temp->next == NULL) {
             add_back(t);
+	 cout << "Successfully added... " << t << endl;
             return;
         }
 
@@ -143,6 +145,7 @@ public:
         Song* songToDelete = temp->next;
         temp->next = songToDelete->next;
         delete songToDelete;
+        cout << "Successfully removed... " << t << endl;
     }
 
     void play(string s) {
@@ -198,7 +201,7 @@ int main() {
             cin.ignore();
             getline(cin, title);
             int position;
-            cout << "Enter where do you want to add song (0: at the start) : ";
+            cout << "Enter where do you want to add song (0: at the start, no. of songs: at the end) : ";
             cin >> position;
             l.add(title, position);
             break;
