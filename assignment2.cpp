@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 class Text {
@@ -42,6 +43,7 @@ public:
             newText->prev = tail;
             tail = newText;
         }
+        cout << "Added successfully.\n";
     }
 
     void insert_specific(string val, string key) {
@@ -49,9 +51,9 @@ public:
             cout << "List is empty.\n";
             return;
         }
-
         if (head->data == key) {
             insert_front(val);
+            cout << "Added successfully.\n";
             return;
         }
 
@@ -59,7 +61,6 @@ public:
         while (temp != NULL && temp->data != key) {
             temp = temp->next;
         }
-
         if (temp == NULL) {
             cout << "Key '" << key << "' not found in list.\n";
             return;
@@ -71,6 +72,7 @@ public:
         
         temp->prev->next = newText;
         temp->prev = newText;
+        cout << "Added successfully.\n";
     }
 
     void remove_front() {
@@ -80,7 +82,6 @@ public:
         }
 
         Text* temp = head;
-        
         if (head == tail) {
             head = tail = NULL;
         } else {
@@ -98,7 +99,6 @@ public:
         }
 
         Text* temp = tail;
-        
         if (head == tail) {
             head = tail = NULL;
         } else {
@@ -114,14 +114,14 @@ public:
             cout << "List is empty.\n";
             return;
         }
-
         if (head->data == val) {
             remove_front();
+            cout << "'" << val << "'" << " removed.\n";
             return;
         }
-
         if (tail->data == val) {
             remove_back();
+            cout << "'" << val << "'" << " removed.\n";
             return;
         }
 
@@ -131,14 +131,14 @@ public:
         }
 
         if (temp == NULL) {
-            cout << "Text not found\n";
+            cout << "Text not found.\n";
             return;
         }
 
         temp->prev->next = temp->next;
         temp->next->prev = temp->prev;
-
         delete temp;
+        cout << "'" << val << "'" << " removed.\n";
     }
 
     void printText() {
@@ -169,6 +169,22 @@ public:
         cout << endl;
     }
 
+    void saveToFile(string filename){
+        ofstream fout(filename, ios::out);
+        if (!fout.is_open()){
+            cout << "File not opened correctly.\n";
+            return;
+        }
+
+        Text* temp = head;
+        while (temp != NULL) {
+            fout << temp->data << " ";
+            temp = temp->next;
+        }
+        fout << endl;
+        fout.close();
+    }
+
     ~Edit() {
         while (head != NULL) {
             remove_front();
@@ -178,14 +194,71 @@ public:
 
 int main() {
     Edit t;
+    int choice;
+    string input, key;
 
-    t.insert_back("Hi!");
-    t.insert_back("My");
-    t.insert_back("name");
-    t.insert_back("is");
-    t.insert_back("rudresh.");
+    do {
+        cout << "\n----- TEXT EDITOR -----\n";
+        cout << "1. Insert text at back\n";
+        cout << "2. Insert text at specific position\n";
+        cout << "3. Remove text\n";
+        cout << "4. Display text\n";
+        cout << "5. Reverse text\n";
+        cout << "6. Save list to file\n";
+        cout << "7. Exit\n";
+        cout << "Enter choice : ";
+        cin >> choice;
 
-    t.printText();
+        switch (choice) {
+        case 1:
+            cout << "Enter word : ";
+            cin.ignore();
+            getline(cin, input);
+            t.insert_back(input);
+            break;
+
+        case 2:
+            cout << "Enter word to insert : ";
+            cin.ignore();
+            getline(cin, input);
+            cout << "Enter target word/key to insert before : ";
+            getline(cin, key);
+            t.insert_specific(input, key);
+
+            break;
+
+        case 3:
+            cout << "Enter word to remove : ";
+            cin.ignore();
+            getline(cin, input);
+            t.remove_specific(input);
+            t.saveToFile("data.txt"); 
+            break;
+
+        case 4:
+            cout << "\n--- Current Text ---\n";
+            t.printText();
+            break;
+        
+        case 5:
+            cout << "\n--- Reversed Text ---\n";
+            t.printTextReverse();
+            break;
+        
+        case 6:
+            t.saveToFile("data.txt");
+            cout << "Saved successfully to data.txt!\n";
+            break;
+
+        case 7:
+            cout << "Exiting editor...\n";
+            break;
+
+        default:
+            cout << "Invalid choice! Try again.\n";
+            break;
+        }
+    } while (choice != 7);
 
     return 0;
 }
