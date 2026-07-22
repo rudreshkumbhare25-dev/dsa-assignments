@@ -1,5 +1,5 @@
 #include <iostream>
-#include "SLL.h"
+#include "LinkedList.h"
 using namespace std;
 
 Node::Node(int val) {
