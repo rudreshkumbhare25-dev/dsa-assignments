@@ -9,7 +9,7 @@ This repository contains college course assignments and personal C++ implementat
 | Assignment | Topic | Description | Files |
 | :--- | :--- | :--- | :--- |
 | **Assignment 1** | Singly Linked List | Playlist Maker app with add, play, and deletion. | [`assignment1.cpp`](assignment1.cpp) |
-| **Assignment 2** | Doubly Linked List | Text Editor with insert, delete, and reverse. | [`assignment2.cpp`](assignment2.cpp) |
+| **Assignment 2** | Doubly Linked List | Text Editor with insert, delete, reverse and file persistent storage. | [`assignment2.cpp`](assignment2.cpp) |
 | **Assignment 3** | Coming Soon | Description of next assignment | *Pending* |
 
 ---
