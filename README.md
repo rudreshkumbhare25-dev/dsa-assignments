@@ -34,13 +34,13 @@ A modular implementation of a Singly Linked List split into header and implement
 
 * **Location:** [`/linkedlist-library`](./linkedlist-library)
 * **Files:** 
-  * `LinkedList.h` (Interface & Class definition)
-  * `LinkedList.cpp` (Method implementations)
+  * `SLL.h` (Interface & Class definition)
+  * `SLL.cpp` (Method implementations)
   * `main.cpp` (Driver program for testing)
 
 **Compilation & Usage:**
 To compile and run the library with the test file, navigate to the folder and run:
 ```bash
 cd linkedlist-library
-g++ LinkedList.cpp main.cpp -o main
+g++ SLL.cpp main.cpp -o main
 ./main
