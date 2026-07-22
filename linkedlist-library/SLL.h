@@ -1,4 +1,4 @@
-#ifndef LINKEDLIST_H
+#ifndef SLL_H
 #define SLL_H
 
 class Node {
