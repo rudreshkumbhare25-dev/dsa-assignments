@@ -1,7 +1,7 @@
 // This is a test file given for reference.
 
 #include <iostream>
-#include "LinkedList.h"
+#include "SLL.h"
 using namespace std;
 
 int main(){
