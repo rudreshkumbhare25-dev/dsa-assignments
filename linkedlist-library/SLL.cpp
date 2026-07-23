@@ -42,7 +42,6 @@ void List::pop_front() {
 
     Node* temp = head;
     head = head->next;
-    temp->next = NULL;
     delete temp;
 }
 
@@ -74,18 +73,18 @@ void List::pop_back() {
         temp = temp->next;
     }
 
-    temp->next = NULL;
     delete tail;
     tail = temp;
+	tail->next = NULL;
 }
 
 void List::insert(int val, int pos) {
-    if(pos < 0) {
-        cout << "Invlaid position.\n";
+    if(pos < 1) {
+        cout << "Invalid position.\n";
         return;
     }
 
-    if(pos == 0) {
+    if(pos == 1) {
         push_front(val);
         return;
     }
@@ -93,11 +92,17 @@ void List::insert(int val, int pos) {
     Node* temp = head;
     for(int i=0; i<pos-2; i++) {
         if(temp == NULL) {
-            cout << "Invlaid position.\n";
+            cout << "Invalid position.\n";
             return;
         }
         temp = temp->next;
     }
+
+	if (temp == NULL) {
+        cout << "Invalid position.\n";
+        return;
+    }
+	
     Node* newNode = new Node(val);
     newNode->next = temp->next;
     temp->next = newNode;
@@ -115,7 +120,7 @@ void List::pop_specific(int val) {
 
     if (head->data == val) {
         pop_front();
-        cout << "Successfully removed... " << val << endl;
+        cout << "Successfully removed '" << val << "'\n";
         return;
     }
 
@@ -131,17 +136,25 @@ void List::pop_specific(int val) {
 
     if (temp->next == tail) {
         pop_back();
-        cout << "Successfully removed... " << val << endl;
+        cout << "Successfully removed '" << val << "'\n";
         return;
     }
 
     Node* nodeToDelete = temp->next;
     temp->next = nodeToDelete->next;
     delete nodeToDelete;
+	cout << "Successfully removed '" << val << "'\n";
 }
 
 void List::reverseList() {
-    Node* prev = NULL;
+    if (head == NULL) {
+		cout << "List is empty.\n";
+		return;
+	}
+
+	tail = head;
+	
+	Node* prev = NULL;
     Node* curr = head;
     Node* next = NULL;
 
