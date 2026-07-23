@@ -30,17 +30,18 @@ All implementations are written in standard C++. You can run any assignment usin
 ## 🛠️ Personal Projects & Custom Libraries
 
 ### 📌 Custom C++ Linked List Library
-A modular implementation of a Singly Linked List split into header and implementation files.
 
-* **Location:** [`/linkedlist-library`](./linkedlist-library)
-* **Files:** 
-  * `SLL.h` (Interface & Class definition)
-  * `SLL.cpp` (Method implementations)
-  * `main.cpp` (Driver program for testing)
+A modular implementation of **Singly Linked List (SLL)** and **Doubly Linked List (DLL)** split into header and implementation files.
 
-**Compilation & Usage:**
-To compile and run the library with the test file, navigate to the folder and run:
+* **Location:** `/linkedlist-library`
+* **Files:**
+  * `SLL.h` / `SLL.cpp` (Singly Linked List interface & implementation)
+  * `DLL.h` / `DLL.cpp` (Doubly Linked List interface & implementation)
+  * `main.cpp` (Driver program for testing both lists)
+
+**Compilation & Usage:** To compile and run the library with the test suite, navigate to the folder and run:
+
 ```bash
 cd linkedlist-library
-g++ SLL.cpp main.cpp -o main
+g++ SLL.cpp DLL.cpp main.cpp -o main
 ./main
