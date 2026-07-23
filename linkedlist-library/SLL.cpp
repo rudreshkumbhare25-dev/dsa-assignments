@@ -73,7 +73,7 @@ void List::pop_back() {
 }
 
 void List::insert(int val, int pos) {
-    if (pos < 1) return; // Invalid 1-based position
+    if (pos < 1) return;
 
     if (pos == 1) {
         push_front(val);
@@ -86,7 +86,7 @@ void List::insert(int val, int pos) {
         temp = temp->next;
     }
 
-    if (temp == NULL) return; // Position out of bounds
+    if (temp == NULL) return;
 
     Node* newNode = new Node(val);
     newNode->next = temp->next;
@@ -110,7 +110,7 @@ void List::pop_specific(int val) {
         temp = temp->next;
     }
 
-    if (temp->next == NULL) return; // Value not found
+    if (temp->next == NULL) return;
 
     if (temp->next == tail) {
         pop_back();
@@ -125,7 +125,7 @@ void List::pop_specific(int val) {
 void List::reverseList() {
     if (head == NULL) return;
 
-    tail = head; // Old head becomes new tail
+    tail = head;
     
     Node* prev = NULL;
     Node* curr = head;
