@@ -29,10 +29,7 @@ void List::push_front(int val) {
 }
 
 void List::pop_front() {
-    if (head == NULL) {
-        cout << "List is empty.\n";
-        return;
-    }
+    if (head == NULL) return;
 
     if (head == tail) {
         delete head;
@@ -57,10 +54,7 @@ void List::push_back(int val) {
 }
 
 void List::pop_back() {
-    if (head == NULL) {
-        cout << "List is empty.\n";
-        return;
-    }
+    if (head == NULL) return;
 
     if (head == tail) {
         delete head;
@@ -75,34 +69,25 @@ void List::pop_back() {
 
     delete tail;
     tail = temp;
-	tail->next = NULL;
+    tail->next = NULL;
 }
 
 void List::insert(int val, int pos) {
-    if(pos < 1) {
-        cout << "Invalid position.\n";
-        return;
-    }
+    if (pos < 1) return; // Invalid 1-based position
 
-    if(pos == 1) {
+    if (pos == 1) {
         push_front(val);
         return;
     }
 
     Node* temp = head;
-    for(int i=0; i<pos-2; i++) {
-        if(temp == NULL) {
-            cout << "Invalid position.\n";
-            return;
-        }
+    for (int i = 0; i < pos - 2; i++) {
+        if (temp == NULL) break;
         temp = temp->next;
     }
 
-	if (temp == NULL) {
-        cout << "Invalid position.\n";
-        return;
-    }
-	
+    if (temp == NULL) return; // Position out of bounds
+
     Node* newNode = new Node(val);
     newNode->next = temp->next;
     temp->next = newNode;
@@ -113,14 +98,10 @@ void List::insert(int val, int pos) {
 }
 
 void List::pop_specific(int val) {
-    if (head == NULL) {
-        cout << "List is empty.\n";
-        return;
-    }
+    if (head == NULL) return;
 
     if (head->data == val) {
         pop_front();
-        cout << "Successfully removed '" << val << "'\n";
         return;
     }
 
@@ -129,56 +110,47 @@ void List::pop_specific(int val) {
         temp = temp->next;
     }
 
-    if (temp->next == NULL) {
-        cout << "Node not found.\n";
-        return;
-    }
+    if (temp->next == NULL) return; // Value not found
 
     if (temp->next == tail) {
         pop_back();
-        cout << "Successfully removed '" << val << "'\n";
         return;
     }
 
     Node* nodeToDelete = temp->next;
     temp->next = nodeToDelete->next;
     delete nodeToDelete;
-	cout << "Successfully removed '" << val << "'\n";
 }
 
 void List::reverseList() {
-    if (head == NULL) {
-		cout << "List is empty.\n";
-		return;
-	}
+    if (head == NULL) return;
 
-	tail = head;
-	
-	Node* prev = NULL;
+    tail = head; // Old head becomes new tail
+    
+    Node* prev = NULL;
     Node* curr = head;
     Node* next = NULL;
 
     while (curr != NULL) {
-	    next = curr->next;
-	    curr->next = prev;
-	    prev = curr;
-	    curr = next;
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
     }
     head = prev;
 }
 
-void List::search(int val) {
+bool List::search(int val) {
     Node* temp = head;
 
     while (temp != NULL) {
         if (temp->data == val) {
-            cout << "Found: " << val << endl;
-            return;
+            return true;
         }
         temp = temp->next;
     }
 
-    cout << "Node not found.\n";
+    return false;
 }
 
 void List::displayLL() {
@@ -192,6 +164,5 @@ void List::displayLL() {
         cout << temp->data << " -> ";
         temp = temp->next;
     }
-    cout << "NULL";
-    cout << endl;
+    cout << "NULL\n";
 }
